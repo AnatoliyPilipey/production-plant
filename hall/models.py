@@ -20,21 +20,27 @@ class WorkCommitments(models.Model):
     duties = models.CharField(max_length=255)
     price = models.FloatField()
 
+    def __str__(self):
+        return self.duties
+
 
 class Workman(models.Model):
     first_name = models.CharField(max_length=65)
     last_name = models.CharField(max_length=65)
-    rate = models.FloatField()
+    rate = models.DecimalField(max_digits=3, decimal_places=2, default=1)
     commitment = models.ForeignKey(
         WorkCommitments,
         on_delete=models.DO_NOTHING,
         related_name="work_commitment"
     )
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Shift(models.Model):
     work_date = models.DateField()
-    products_produced = models.FloatField()
+    products_produced = models.DecimalField(max_digits=50, decimal_places=2)
     foreman = models.ForeignKey(
         Foreman,
         on_delete=models.DO_NOTHING,
@@ -44,3 +50,6 @@ class Shift(models.Model):
         Workman,
         related_name="workman_to_day"
     )
+
+    def __str__(self):
+        return f"Data: {self.work_date} Produced: {self.products_produced}"
