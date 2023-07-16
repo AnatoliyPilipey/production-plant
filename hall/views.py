@@ -8,15 +8,15 @@ def index(request):
 
     num_shifts = Shift.objects.count()
     num_foreman = Foreman.objects.count()
-    sum_products = Shift.objects.all().aggregate(Sum("products_produced"))
+    sum_products = Shift.objects.all().aggregate(production=Sum("products_produced"))
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
 
     context = {
         "num_shifts": num_shifts,
         "num_foreman": num_foreman,
-        "sum_products": sum_products,
+        "sum_products": sum_products["production"],
         "num_visits": num_visits + 1,
     }
 
-    return render(request, "taxi/index.html", context=context)
+    return render(request, "hall/index.html", context=context)

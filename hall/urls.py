@@ -8,4 +8,4 @@ urlpatterns = [
     path("", index, name="index"),
 ]
 
-app_name = "app"
+app_name = "hall"
