@@ -1,11 +1,10 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
 
 class Foreman(AbstractUser):
     hired_date = models.DateField()
-    salary = models.DecimalField()
+    salary = models.FloatField()
     description = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
@@ -28,7 +27,7 @@ class Workman(models.Model):
     rate = models.FloatField()
     commitment = models.ForeignKey(
         WorkCommitments,
-        on_delete=models.SET_NULL,
+        on_delete=models.DO_NOTHING,
         related_name="work_commitment"
     )
 
@@ -38,7 +37,7 @@ class Shift(models.Model):
     products_produced = models.FloatField()
     foreman = models.ForeignKey(
         Foreman,
-        on_delete=models.SET_NULL,
+        on_delete=models.DO_NOTHING,
         related_name="foreman_to_day"
     )
     workman = models.ManyToManyField(
