@@ -13,3 +13,8 @@ class Foreman(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} ({self.last_name}, {self.hired_date})"
+
+
+class WorkCommitments(models.Model):
+    duties = models.CharField(max_length=255)
+    price = models.FloatField()
