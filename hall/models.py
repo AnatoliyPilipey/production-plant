@@ -22,12 +22,26 @@ class WorkCommitments(models.Model):
     price = models.FloatField()
 
 
-class Workmen(models.Model):
+class Workman(models.Model):
     first_name = models.CharField(max_length=65)
     last_name = models.CharField(max_length=65)
     rate = models.FloatField()
     commitment = models.ForeignKey(
         WorkCommitments,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         related_name="work_commitment"
+    )
+
+
+class Shift(models.Model):
+    work_date = models.DateField()
+    products_produced = models.FloatField()
+    foreman = models.ForeignKey(
+        Foreman,
+        on_delete=models.SET_NULL,
+        related_name="foreman_to_day"
+    )
+    workman = models.ManyToManyField(
+        Workman,
+        related_name="workman_to_day"
     )
