@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Foreman(AbstractUser):
-    hired_date = models.DateField()
-    salary = models.FloatField()
+    hired_date = models.DateField(null=True)
+    salary = models.FloatField(null=True)
     description = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
