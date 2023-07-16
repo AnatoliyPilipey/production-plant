@@ -10,6 +10,8 @@ class Foreman(AbstractUser):
 
     class Meta:
         ordering = ["first_name"]
+        verbose_name = "foreman"
+        verbose_name_plural = "foreman"
 
     def __str__(self):
         return f"{self.first_name} ({self.last_name}, {self.hired_date})"
