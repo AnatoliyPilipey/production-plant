@@ -18,3 +18,14 @@ class Foreman(AbstractUser):
 class WorkCommitments(models.Model):
     duties = models.CharField(max_length=255)
     price = models.FloatField()
+
+
+class Workmen(models.Model):
+    first_name = models.CharField(max_length=65)
+    last_name = models.CharField(max_length=65)
+    rate = models.FloatField()
+    commitment = models.ForeignKey(
+        WorkCommitments,
+        on_delete=models.DO_NOTHING,
+        related_name="work_commitment"
+    )
