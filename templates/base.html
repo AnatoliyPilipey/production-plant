@@ -8,16 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-  <div>
-    <div>
-      {% block content %}
-      {% endblock %}
-    </div>
-  </div>
-</body>
-
-</html>
 -->
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -29,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="Anatoliy Pylypei, Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.112.5">
-    <title>Factory · Bootstrap v5.3</title>
+    <title>Factory</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 
@@ -214,18 +204,21 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Our results and production</h1>
-        <p class="lead text-body-secondary">A little background on what we've done to date. Also creating today's result.</p>
-        <br>
-        <br>
-        <br>
-                <br>
-        <br>
-        <br>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Shift creation</a>
-          <a href="#" class="btn btn-secondary my-2">Our results</a>
-        </p>
+        {% block content %}
+          <h1 class="fw-light">Our results and production</h1>
+          <p class="lead text-body-secondary">A little background on what we've done to date. Also creating today's result.</p>
+          <br>
+          <br>
+          <br>
+                  <br>
+          <br>
+          <br>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Shift creation</a>
+            <a href="#" class="btn btn-secondary my-2">Our results</a>
+          </p>
+        {% endblock %}
+
       </div>
     </div>
   </section>
@@ -291,7 +284,7 @@
     <p class="float-end mb-1">
       <a href="#">Back to top</a>
     </p>
-    <p class="mb-1">A demo by Pilipei Anatoly using the © Bootstrap page template.</p>
+    <p class="mb-1">A demo by Pilipey Anatoly using the © Bootstrap page template.</p>
   </div>
 </footer>
 <script src="..\static\dist\js\bootstrap.bundle.min.js"></script>
