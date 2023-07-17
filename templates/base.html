@@ -121,7 +121,7 @@
         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
       </symbol>
     </svg>
-
+  <!-- only button
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
@@ -156,53 +156,14 @@
         </li>
       </ul>
     </div>
-
+  -->
 
 <header data-bs-theme="dark">
-  <div class="collapse text-bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4 col-md-6 py-4">
-          <h4>About</h4>
-          <p class="text-body-secondary">Our company is engaged in the production of: fuel briquettes, fuel pellet and charcoal. Our concept is the careful attitude to the resources we have not only now, but also what we will have in the future.</p>
-        </div>
-        <div class="col-sm-2 col-md-2 py-4">
-          <h4>Production</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Foremen</a></li>
-            <li><a href="#" class="text-white">Shift</a></li>
-            <li><a href="#" class="text-white">WorkCommitments</a></li>
-            <li><a href="#" class="text-white">Workmen</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-2 offset-md-1 py-4">
-          <h4>Welcome</h4>
-          <ul class="list-unstyled">
 
-            {% if user.is_authenticated %}
-              <li><a href="#" class="text-white">Foreman: {{ user.get_username }}</li>
-              <li><a href="{% url 'logout'%}?next={{request.path}}" class="text-white">Logout</a></li>
-            {% else %}
-              <li><a href="{% url 'login'%}?next={{request.path}}" class="text-white">Login</a></li>
-              <li><a href="{% url 'hall:foreman-create' %}" class="text-white">Registration</a></li>
-            {% endif %}
+  {% block header %}
+    {% include "includes/header.html" %}
+  {% endblock %}
 
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Welcome to the Factory</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
 </header>
 
 <main>
