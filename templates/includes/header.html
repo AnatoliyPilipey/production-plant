@@ -8,7 +8,7 @@
         <div class="col-sm-2 col-md-2 py-4">
           <h4>Production</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Foremen</a></li>
+            <li><a href="{% url 'hall:foreman-list' %}" class="text-white">Foremen</a></li>
             <li><a href="#" class="text-white">Shift</a></li>
             <li><a href="#" class="text-white">WorkCommitments</a></li>
             <li><a href="#" class="text-white">Workmen</a></li>
@@ -19,7 +19,7 @@
           <ul class="list-unstyled">
 
             {% if user.is_authenticated %}
-              <li>Foreman: <a href="#" class="text-white">{{ user.get_username }}</li>
+              <li>Foreman: <a href="#" class="text-white">{{ user.get_username }}</a></li>
               <li><a href="{% url 'logout'%}?next={{request.path}}" class="text-white">Logout</a></li>
             {% else %}
               <li><a href="{% url 'login'%}?next={{request.path}}" class="text-white">Login</a></li>

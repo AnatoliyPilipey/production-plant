@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Username: {{ foreman.username }}
+  </h1>
+
+  <p><strong>First name:</strong> {{ foreman.first_name }}</p>
+  <p><strong>Last name:</strong> {{ foreman.last_name }}</p>
+  <p><strong>Salary:</strong> {{ foreman.salary }}</p>
+  <p><strong>Is staff:</strong> {{ foreman.is_staff }}</p>
+  <a href="{% url 'hall:foreman-list' %}" class="btn btn-primary my-2">Back</a>
+  </div>
+{% endblock %}

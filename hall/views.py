@@ -31,3 +31,11 @@ class ForemanCreateView(LoginRequiredMixin, generic.CreateView):
     model = Foreman
     form_class = ForemanCreationForm
     success_url = reverse_lazy("hall:index")
+
+
+class ForemanListView(LoginRequiredMixin, generic.ListView):
+    model = Foreman
+
+
+class ForemanDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Foreman
