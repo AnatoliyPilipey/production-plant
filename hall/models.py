@@ -8,7 +8,7 @@ class Foreman(AbstractUser):
     description = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
-        ordering = ["first_name"]
+        ordering = ["username"]
         verbose_name = "foreman"
         verbose_name_plural = "foreman"
 
