@@ -35,6 +35,7 @@ class ForemanCreateView(LoginRequiredMixin, generic.CreateView):
 
 class ForemanListView(LoginRequiredMixin, generic.ListView):
     model = Foreman
+    paginate_by = 2
 
 
 class ForemanDetailView(LoginRequiredMixin, generic.DetailView):
