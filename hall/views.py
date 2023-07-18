@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Shift, Foreman
-from .forms import ForemanCreationForm
+from .forms import ForemanCreationForm, SearchForm
 
 
 def index(request):
@@ -35,7 +35,26 @@ class ForemanCreateView(LoginRequiredMixin, generic.CreateView):
 
 class ForemanListView(LoginRequiredMixin, generic.ListView):
     model = Foreman
-    paginate_by = 2
+    paginate_by = 3
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ForemanListView, self).get_context_data(**kwargs)
+
+        username_ = self.request.GET.get("value_", "")
+
+        context["search_form"] = SearchForm(
+            initial={"value_": username_}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Foreman.objects.all()
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                username__icontains=form.cleaned_data["value_"]
+            )
+        return queryset
 
 
 class ForemanDetailView(LoginRequiredMixin, generic.DetailView):
