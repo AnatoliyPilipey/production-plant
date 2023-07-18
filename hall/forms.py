@@ -21,3 +21,4 @@ class SearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search"})
     )
+

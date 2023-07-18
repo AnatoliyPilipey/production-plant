@@ -30,8 +30,9 @@ class Workman(models.Model):
     rate = models.DecimalField(max_digits=3, decimal_places=2, default=1)
     commitment = models.ForeignKey(
         WorkCommitments,
-        on_delete=models.DO_NOTHING,
-        related_name="work_commitment"
+        on_delete=models.SET_NULL,
+        related_name="work_commitment",
+        null=True
     )
 
     def __str__(self):
@@ -43,8 +44,9 @@ class Shift(models.Model):
     products_produced = models.DecimalField(max_digits=50, decimal_places=2)
     foreman = models.ForeignKey(
         Foreman,
-        on_delete=models.DO_NOTHING,
-        related_name="foreman_to_day"
+        on_delete=models.SET_NULL,
+        related_name="foreman_to_day",
+        null=True
     )
     workman = models.ManyToManyField(
         Workman,

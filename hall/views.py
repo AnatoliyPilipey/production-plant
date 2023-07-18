@@ -5,7 +5,10 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Shift, Foreman
-from .forms import ForemanCreationForm, SearchForm
+from .forms import (
+    ForemanCreationForm,
+    SearchForm,
+)
 
 
 def index(request):
@@ -59,3 +62,14 @@ class ForemanListView(LoginRequiredMixin, generic.ListView):
 
 class ForemanDetailView(LoginRequiredMixin, generic.DetailView):
     model = Foreman
+
+
+class ForemanUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Foreman
+    fields = ["username", "first_name", "last_name", "salary"]
+    success_url = reverse_lazy("hall:foreman-list")
+
+
+class ForemanDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Foreman
+    success_url = reverse_lazy("hall:foreman-list")
