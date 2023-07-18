@@ -1,15 +1,14 @@
 from django.urls import path
 from .views import (
+    index,
     ForemanCreateView,
     ForemanListView,
     ForemanDetailView,
     ForemanUpdateView,
     ForemanDeleteView,
+    WorkCommitmentsListView,
 )
 
-from .views import (
-    index,
-)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -34,6 +33,11 @@ urlpatterns = [
         ForemanDeleteView.as_view(),
         name="foreman-delete",
     ),
+    path(
+        "work-commitments/",
+        WorkCommitmentsListView.as_view(),
+        name="work-commitments-list"
+    )
 ]
 
 app_name = "hall"

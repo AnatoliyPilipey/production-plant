@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Work Commitments List
+    <a style="float: right" href="#">+</a>
+  </h1>
+  <ul>
+    {% if work_commitments_list %}
+      {% for work_commitments in work_commitments_list %}
+        <li>Work commitments: {{ work_commitments.duties }} Price: {{ work_commitments.price }}</li>
+      {% endfor %}
+    {% else %}
+      <p>The are no work commitments</p>
+    {% endif %}
+  </ul>
+{% endblock %}

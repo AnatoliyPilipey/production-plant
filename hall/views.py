@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .models import Shift, Foreman
+from .models import Shift, Foreman, WorkCommitments
 from .forms import (
     ForemanCreationForm,
     SearchForm,
@@ -73,3 +73,10 @@ class ForemanUpdateView(LoginRequiredMixin, generic.UpdateView):
 class ForemanDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Foreman
     success_url = reverse_lazy("hall:foreman-list")
+
+
+class WorkCommitmentsListView(LoginRequiredMixin, generic.ListView):
+    model = WorkCommitments
+    template_name = "hall/work_commitments_list.html"
+    context_object_name = "work_commitments_list"
+    paginate_by = 3
