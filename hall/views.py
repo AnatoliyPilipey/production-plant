@@ -94,3 +94,9 @@ class WorkCommitmentsUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = "__all__"
     template_name = "hall/work_commitments_form.html"
     success_url = reverse_lazy("hall:work-commitments-list")
+
+
+class WorkCommitmentsDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = WorkCommitments
+    template_name = "hall/work_commitments_confirm_delete.html"
+    success_url = reverse_lazy("hall:work-commitments-list")
