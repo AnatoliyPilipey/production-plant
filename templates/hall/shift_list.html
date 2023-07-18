@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Shift List
+    <a style="float: right" href="{% url 'hall:shift-create' %}">+</a>
+  </h1>
+    {% block search %}
+        {% include "includes/search.html" %}
+    {% endblock %}
+  <ul>
+    {% if shift_list %}
+      {% for shift in shift_list %}
+        <li>
+          <a href="{% url 'hall:shift-detail' pk=shift.pk %}">
+            Work dat: {{ shift.work_date }} Foreman: {{ shift.foreman.first_name }}
+          </a>
+          <a class="btn btn-primary" href="{% url 'hall:shift-update' pk=shift.pk %}">Edite</a>
+          <a class="btn btn-danger" href="{% url 'hall:shift-delete' pk=shift.pk %}">Delete</a>
+        </li>
+      {% endfor %}
+    {% else %}
+      <p>The are no workman</p>
+    {% endif %}
+  </ul>
+{% endblock %}

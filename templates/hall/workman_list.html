@@ -5,6 +5,9 @@
     Workman List
     <a style="float: right" href="{% url 'hall:workman-create' %}">+</a>
   </h1>
+    {% block search %}
+        {% include "includes/search.html" %}
+    {% endblock %}
   <ul>
     {% if workman_list %}
       {% for workman in workman_list %}

@@ -15,6 +15,11 @@ from .views import (
     WorkmanCreateView,
     WorkmanUpdateView,
     WorkmanDeleteView,
+    ShiftListView,
+    ShiftDetailView,
+    ShiftCreateView,
+    ShiftUpdateView,
+    ShiftDeleteView,
 )
 
 
@@ -85,6 +90,30 @@ urlpatterns = [
         "workman/<int:pk>/delete/",
         WorkmanDeleteView.as_view(),
         name="workman-delete"
+    ),    path(
+        "shift/",
+        ShiftListView.as_view(),
+        name="shift-list"
+    ),
+    path(
+        "shift/<int:pk>/",
+        ShiftDetailView.as_view(),
+        name="shift-detail"
+    ),
+    path(
+        "shift/create/",
+        ShiftCreateView.as_view(),
+        name="shift-create"
+    ),
+    path(
+        "shift/<int:pk>/update/",
+        ShiftUpdateView.as_view(),
+        name="shift-update"
+    ),
+    path(
+        "shift/<int:pk>/delete/",
+        ShiftDeleteView.as_view(),
+        name="shift-delete"
     ),
 ]
 

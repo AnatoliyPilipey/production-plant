@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from .models import Foreman
+from .models import Foreman, Shift, Workman
 
 
 class ForemanCreationForm(UserCreationForm):
@@ -23,3 +23,12 @@ class SearchForm(forms.Form):
     )
 
 
+class ShiftForm(forms.ModelForm):
+    workman = forms.ModelMultipleChoiceField(
+        queryset=Workman.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    class Meta:
+        model = Shift
+        fields = "__all__"

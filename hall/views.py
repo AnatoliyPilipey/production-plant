@@ -8,6 +8,7 @@ from .models import Shift, Foreman, WorkCommitments, Workman
 from .forms import (
     ForemanCreationForm,
     SearchForm,
+    ShiftForm,
 )
 
 
@@ -128,6 +129,7 @@ class WorkmanListView(LoginRequiredMixin, generic.ListView):
 
 class WorkmanDetailView(LoginRequiredMixin, generic.DetailView):
     model = Workman
+    queryset = Workman.objects.prefetch_related("workman_to_day__foreman")
 
 
 class WorkmanCreateView(LoginRequiredMixin, generic.CreateView):
@@ -145,3 +147,48 @@ class WorkmanUpdateView(LoginRequiredMixin, generic.UpdateView):
 class WorkmanDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Workman
     success_url = reverse_lazy("hall:workman-list")
+
+
+class ShiftListView(LoginRequiredMixin, generic.ListView):
+    model = Workman
+    paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ShiftListView, self).get_context_data(**kwargs)
+
+        username_ = self.request.GET.get("value_", "")
+
+        context["search_form"] = SearchForm(
+            initial={"value_": username_}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Shift.objects.all()
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                work_date__icontains=form.cleaned_data["value_"]
+            )
+        return queryset
+
+
+class ShiftDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Shift
+
+
+class ShiftCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Shift
+    form_class = ShiftForm
+    success_url = reverse_lazy("hall:shift-list")
+
+
+class ShiftUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Shift
+    fields = "__all__"
+    success_url = reverse_lazy("hall:shift-list")
+
+
+class ShiftDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Shift
+    success_url = reverse_lazy("hall:shift-list")
