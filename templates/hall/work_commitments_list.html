@@ -3,7 +3,7 @@
 {% block content %}
   <h1>
     Work Commitments List
-    <a style="float: right" href="#">+</a>
+    <a style="float: right" href="{% url 'hall:work-commitments-create' %}">+</a>
   </h1>
   <ul>
     {% if work_commitments_list %}

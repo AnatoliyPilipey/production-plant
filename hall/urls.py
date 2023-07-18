@@ -7,6 +7,7 @@ from .views import (
     ForemanUpdateView,
     ForemanDeleteView,
     WorkCommitmentsListView,
+    WorkCommitmentsCreateView,
 )
 
 
@@ -37,7 +38,12 @@ urlpatterns = [
         "work-commitments/",
         WorkCommitmentsListView.as_view(),
         name="work-commitments-list"
-    )
+    ),
+    path(
+        "work-commitments/create",
+        WorkCommitmentsCreateView.as_view(),
+        name="work-commitments-create"
+    ),
 ]
 
 app_name = "hall"

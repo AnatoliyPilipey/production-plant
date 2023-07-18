@@ -80,3 +80,10 @@ class WorkCommitmentsListView(LoginRequiredMixin, generic.ListView):
     template_name = "hall/work_commitments_list.html"
     context_object_name = "work_commitments_list"
     paginate_by = 3
+
+
+class WorkCommitmentsCreateView(LoginRequiredMixin, generic.CreateView):
+    model = WorkCommitments
+    fields = "__all__"
+    template_name = "hall/work_commitments_form.html"
+    success_url = reverse_lazy("hall:work-commitments-list")
