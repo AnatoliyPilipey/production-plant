@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Workman List
+    <a style="float: right" href="{% url 'hall:workman-create' %}">+</a>
+  </h1>
+  <ul>
+    {% if workman_list %}
+      {% for workman in workman_list %}
+        <li>
+          <a href="{% url 'hall:workman-detail' pk=workman.pk %}">
+            First name: {{ workman.first_name }} Duties: {{ workman.commitment.duties }}
+          </a>
+          <a class="btn btn-primary" href="{% url 'hall:workman-update' pk=workman.pk %}">Edite</a>
+          <a class="btn btn-danger" href="{% url 'hall:workman-delete' pk=workman.pk %}">Delete</a>
+        </li>
+      {% endfor %}
+    {% else %}
+      <p>The are no workman</p>
+    {% endif %}
+  </ul>
+{% endblock %}

@@ -10,6 +10,11 @@ from .views import (
     WorkCommitmentsCreateView,
     WorkCommitmentsUpdateView,
     WorkCommitmentsDeleteView,
+    WorkmanListView,
+    WorkmanDetailView,
+    WorkmanCreateView,
+    WorkmanUpdateView,
+    WorkmanDeleteView,
 )
 
 
@@ -42,19 +47,44 @@ urlpatterns = [
         name="work-commitments-list"
     ),
     path(
-        "work-commitments/create",
+        "work-commitments/create/",
         WorkCommitmentsCreateView.as_view(),
         name="work-commitments-create"
     ),
     path(
-        "work-commitments/<int:pk>/update",
+        "work-commitments/<int:pk>/update/",
         WorkCommitmentsUpdateView.as_view(),
         name="work-commitments-update"
     ),
     path(
-        "work-commitments/<int:pk>/delete",
+        "work-commitments/<int:pk>/delete/",
         WorkCommitmentsDeleteView.as_view(),
         name="work-commitments-delete"
+    ),
+    path(
+        "workman/",
+        WorkmanListView.as_view(),
+        name="workman-list"
+    ),
+    path(
+        "workman/<int:pk>/",
+        WorkmanDetailView.as_view(),
+        name="workman-detail"
+    ),
+    path(
+        "workman/create/",
+        WorkmanCreateView.as_view(),
+        name="workman-create"
+    ),
+    path(
+        "workman/<int:pk>/update/",
+        WorkmanUpdateView.as_view(),
+        name="workman-update"
+    ),
+    path(
+        "workman/<int:pk>/delete/",
+        WorkmanDeleteView.as_view(),
+        name="workman-delete"
     ),
 ]
 

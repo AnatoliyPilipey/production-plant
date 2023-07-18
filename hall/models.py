@@ -35,6 +35,9 @@ class Workman(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ["first_name"]
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -52,6 +55,9 @@ class Shift(models.Model):
         Workman,
         related_name="workman_to_day"
     )
+
+    class Meta:
+        ordering = ["work_date"]
 
     def __str__(self):
         return f"Data: {self.work_date} Produced: {self.products_produced}"

@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .models import Shift, Foreman, WorkCommitments
+from .models import Shift, Foreman, WorkCommitments, Workman
 from .forms import (
     ForemanCreationForm,
     SearchForm,
@@ -100,3 +100,48 @@ class WorkCommitmentsDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = WorkCommitments
     template_name = "hall/work_commitments_confirm_delete.html"
     success_url = reverse_lazy("hall:work-commitments-list")
+
+
+class WorkmanListView(LoginRequiredMixin, generic.ListView):
+    model = Workman
+    paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkmanListView, self).get_context_data(**kwargs)
+
+        username_ = self.request.GET.get("value_", "")
+
+        context["search_form"] = SearchForm(
+            initial={"value_": username_}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Workman.objects.select_related("commitment")
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                first_name__icontains=form.cleaned_data["value_"]
+            )
+        return queryset
+
+
+class WorkmanDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Workman
+
+
+class WorkmanCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Workman
+    fields = "__all__"
+    success_url = reverse_lazy("hall:workman-list")
+
+
+class WorkmanUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Workman
+    fields = "__all__"
+    success_url = reverse_lazy("hall:workman-list")
+
+
+class WorkmanDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Workman
+    success_url = reverse_lazy("hall:workman-list")

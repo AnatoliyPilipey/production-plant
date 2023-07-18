@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Workman
+  </h1>
+
+  <p><strong>First name:</strong> {{ workman.first_name }}</p>
+  <p><strong>Last name:</strong> {{ workman.last_name }}</p>
+  <p><strong>Rate:</strong> {{ workman.rate }}</p>
+  <p><strong>Duties:</strong> {{ workman.work_commitment.duties }}</p>
+  <a href="{% url 'hall:workman-list' %}" class="btn btn-primary my-2">Back</a>
+  </div>
+{% endblock %}
