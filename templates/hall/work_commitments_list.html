@@ -8,7 +8,7 @@
   <ul>
     {% if work_commitments_list %}
       {% for work_commitments in work_commitments_list %}
-        <li>Work commitments: {{ work_commitments.duties }} Price: {{ work_commitments.price }}</li>
+        <li>Work commitments: {{ work_commitments.duties }} Price: {{ work_commitments.price }}  <a style="float: right" href="{% url 'hall:work-commitments-update' pk=work_commitments.pk %}">Edite</a></li>
       {% endfor %}
     {% else %}
       <p>The are no work commitments</p>

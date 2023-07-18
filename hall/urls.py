@@ -8,6 +8,7 @@ from .views import (
     ForemanDeleteView,
     WorkCommitmentsListView,
     WorkCommitmentsCreateView,
+    WorkCommitmentsUpdateView,
 )
 
 
@@ -43,6 +44,11 @@ urlpatterns = [
         "work-commitments/create",
         WorkCommitmentsCreateView.as_view(),
         name="work-commitments-create"
+    ),
+    path(
+        "work-commitments/<int:pk>/update",
+        WorkCommitmentsUpdateView.as_view(),
+        name="work-commitments-update"
     ),
 ]
 
