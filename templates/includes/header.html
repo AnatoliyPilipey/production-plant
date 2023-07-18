@@ -20,9 +20,9 @@
 
             {% if user.is_authenticated %}
               <li>Foreman: <a href="#" class="text-white">{{ user.get_username }}</a></li>
-              <li><a href="{% url 'logout'%}?next={{request.path}}" class="text-white">Logout</a></li>
+              <li><a href="{% url 'logout' %}?next={{ request.path }}" class="text-white">Logout</a></li>
             {% else %}
-              <li><a href="{% url 'login'%}?next={{request.path}}" class="text-white">Login</a></li>
+              <li><a href="{% url 'login' %}?next={{ request.path }}" class="text-white">Login</a></li>
               <li><a href="{% url 'hall:foreman-create' %}" class="text-white">Registration</a></li>
             {% endif %}
 
