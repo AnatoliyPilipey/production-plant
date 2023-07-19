@@ -7,13 +7,24 @@
   </h1>
   <ul>
     {% if work_commitments_list %}
+      <table class="table">
+        <tr>
+          <th>Work commitments</th>
+          <th>Price</th>
+        </tr>
       {% for work_commitments in work_commitments_list %}
-        <li>
-          Work commitments: {{ work_commitments.duties }} Price: {{ work_commitments.price }}
-          <a class="btn btn-primary" href="{% url 'hall:work-commitments-update' pk=work_commitments.pk %}">Edite</a>
-          <a class="btn btn-danger" href="{% url 'hall:work-commitments-delete' pk=work_commitments.pk %}">Delete</a>
-        </li>
+        <tr>
+          <td>{{ work_commitments.duties }}</td>
+          <td>{{ work_commitments.price }}</td>
+          <td>
+            <a href="{% url 'hall:work-commitments-update' pk=work_commitments.pk %}">Edite</a>
+          </td>
+          <td>
+            <a href="{% url 'hall:work-commitments-delete' pk=work_commitments.pk %}">Delete</a>
+          </td>
+        </tr>
       {% endfor %}
+      </table>
     {% else %}
       <p>The are no work commitments</p>
     {% endif %}

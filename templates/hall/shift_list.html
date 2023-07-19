@@ -10,15 +10,25 @@
     {% endblock %}
   <ul>
     {% if shift_list %}
-      {% for shift in shift_list %}
-        <li>
-          <a href="{% url 'hall:shift-detail' pk=shift.pk %}">
-            Work dat: {{ shift.work_date }} Foreman: {{ shift.foreman.first_name }}
-          </a>
-          <a class="btn btn-primary" href="{% url 'hall:shift-update' pk=shift.pk %}">Edite</a>
-          <a class="btn btn-danger" href="{% url 'hall:shift-delete' pk=shift.pk %}">Delete</a>
-        </li>
-      {% endfor %}
+      <table class="table">
+        <tr>
+          <th>Work date</th>
+          <th>Foreman</th>
+          <th>Products produced</th>
+        </tr>
+        {% for shift in shift_list %}
+          <tr>
+            <td>
+              <a href="{% url 'hall:shift-detail' pk=shift.pk %}">
+              {{ shift.work_date }}
+              </a>
+            </td>
+            <td>{{ shift.foreman.username }}</td>
+            <td>{{ shift.products_produced }}</td>
+            <td><a href="{% url 'hall:shift-update' pk=shift.pk %}">Edite</a></td>
+            <td><a href="{% url 'hall:shift-delete' pk=shift.pk %}">Delete</a></td>
+        {% endfor %}
+      </table>
     {% else %}
       <p>The are no workman</p>
     {% endif %}

@@ -185,7 +185,7 @@ class ShiftCreateView(LoginRequiredMixin, generic.CreateView):
 
 class ShiftUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Shift
-    fields = "__all__"
+    form_class = ShiftForm
     success_url = reverse_lazy("hall:shift-list")
 
 

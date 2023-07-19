@@ -10,17 +10,33 @@
     {% endblock %}
   <ul>
     {% if workman_list %}
-      {% for workman in workman_list %}
-        <li>
-          <a href="{% url 'hall:workman-detail' pk=workman.pk %}">
-            First name: {{ workman.first_name }} Duties: {{ workman.commitment.duties }}
-          </a>
-          <a class="btn btn-primary" href="{% url 'hall:workman-update' pk=workman.pk %}">Edite</a>
-          <a class="btn btn-danger" href="{% url 'hall:workman-delete' pk=workman.pk %}">Delete</a>
-        </li>
-      {% endfor %}
+      <table class="table">
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Duties</th>
+        </tr>
+
+        {% for workman in workman_list %}
+        <tr>
+          <td>
+            <a href="{% url 'hall:workman-detail' pk=workman.pk %}">
+              {{ workman.first_name }}
+            </a>
+          </td>
+          <td>{{ workman.last_name }}</td>
+          <td>{{ workman.commitment.duties }}</td>
+          <td>
+            <a href="{% url 'hall:workman-update' pk=workman.pk %}">Edite</a>
+          </td>
+          <td>
+            <a href="{% url 'hall:workman-delete' pk=workman.pk %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
     {% else %}
-      <p>The are no workman</p>
+      <p>The are no workman.</p>
     {% endif %}
   </ul>
 {% endblock %}
