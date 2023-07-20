@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Workman List
+    <a style="float: right" href="{% url 'hall:workman-create' %}">+</a>
+  </h1>
+    {% block search %}
+        {% include "includes/search.html" %}
+    {% endblock %}
+  <ul>
+    {% if workman_list %}
+      <table class="table">
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Duties</th>
+        </tr>
+
+        {% for workman in workman_list %}
+        <tr>
+          <td>
+            <a href="{% url 'hall:workman-detail' pk=workman.pk %}">
+              {{ workman.first_name }}
+            </a>
+          </td>
+          <td>{{ workman.last_name }}</td>
+          <td>{{ workman.commitment.duties }}</td>
+          <td>
+            <a href="{% url 'hall:workman-update' pk=workman.pk %}">Edite</a>
+          </td>
+          <td>
+            <a href="{% url 'hall:workman-delete' pk=workman.pk %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>The are no workman.</p>
+    {% endif %}
+  </ul>
+{% endblock %}

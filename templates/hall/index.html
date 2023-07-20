@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to Production</h1>
+  <ul>
+    <p>Num shifts: {{ num_shifts }}</p>
+    <p>Num foremen: {{ num_foreman }}</p>
+    <p>Sum products: {{ sum_products }}</p>
+  </ul>
+  <p>Yuo have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
+{% endblock %}

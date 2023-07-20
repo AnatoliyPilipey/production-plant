@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+      Foreman List
+      <a href="{% url 'hall:foreman-create' %}" class="btn btn-primary link-to-page">
+        Registration
+      </a>
+    </h1>
+
+    {% block search %}
+        {% include "includes/search.html" %}
+    {% endblock %}
+
+    {% if foreman_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Salary</th>
+      </tr>
+    {% for foreman in foreman_list %}
+      <tr>
+        <td>{{ foreman.id }}</td>
+        <td><a href="{% url 'hall:foreman-detail' pk=foreman.id %}">{{ foreman.username }} {% if user == foreman %} (Me){% endif %}</a></td>
+        <td>{{ foreman.first_name }}</td>
+        <td>{{ foreman.last_name }}</td>
+        <td>{{ foreman.salary }}</td>
+        <td><a href="{% url 'hall:foreman-update' pk=foreman.id %}">
+          Update
+        </a></td>
+        <td><a href="{% url 'hall:foreman-delete' pk=foreman.id %}">
+          Delete
+        </a></td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no foreman in the hall.</p>
+    {% endif %}
+{% endblock %}

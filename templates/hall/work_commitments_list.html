@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Work Commitments List
+    <a style="float: right" href="{% url 'hall:work-commitments-create' %}">+</a>
+  </h1>
+  <ul>
+    {% if work_commitments_list %}
+      <table class="table">
+        <tr>
+          <th>Work commitments</th>
+          <th>Price</th>
+        </tr>
+      {% for work_commitments in work_commitments_list %}
+        <tr>
+          <td>{{ work_commitments.duties }}</td>
+          <td>{{ work_commitments.price }}</td>
+          <td>
+            <a href="{% url 'hall:work-commitments-update' pk=work_commitments.pk %}">Edite</a>
+          </td>
+          <td>
+            <a href="{% url 'hall:work-commitments-delete' pk=work_commitments.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else %}
+      <p>The are no work commitments</p>
+    {% endif %}
+  </ul>
+{% endblock %}
