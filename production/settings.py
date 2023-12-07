@@ -30,7 +30,10 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-jgd9@7+bs^s%cq-!zyp
 # DEBUG = True
 DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "https://production-plant.onrender.com"
+]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
