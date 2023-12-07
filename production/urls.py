@@ -21,4 +21,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("hall.urls", namespace="hall")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

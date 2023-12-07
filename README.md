@@ -58,10 +58,10 @@ In a factory it is necessary to keep a record of the products made during a Shif
     ```
 12. Use login and password to log in to the database.  
     ```shell 
-    admin
+    Test
     ```  
     ```shell 
-    zaq12wsx
+    bgt56yhn
     ```
 
 ## Demo  

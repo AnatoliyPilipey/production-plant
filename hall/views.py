@@ -129,7 +129,8 @@ class WorkmanListView(LoginRequiredMixin, generic.ListView):
 
 class WorkmanDetailView(LoginRequiredMixin, generic.DetailView):
     model = Workman
-    queryset = Workman.objects.prefetch_related("workman_to_day__foreman")
+    queryset = Workman.objects.select_related("commitment")
+#    queryset = Workman.objects.prefetch_related("workman_to_day__foreman")
 
 
 class WorkmanCreateView(LoginRequiredMixin, generic.CreateView):
@@ -164,7 +165,7 @@ class ShiftListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Shift.objects.all()
+        queryset = Shift.objects.select_related("foreman")
         form = SearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
@@ -175,6 +176,9 @@ class ShiftListView(LoginRequiredMixin, generic.ListView):
 
 class ShiftDetailView(LoginRequiredMixin, generic.DetailView):
     model = Shift
+
+    def get_queryset(self):
+        return Shift.objects.prefetch_related("workman")
 
 
 class ShiftCreateView(LoginRequiredMixin, generic.CreateView):

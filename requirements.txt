@@ -1,3 +1,7 @@
 django==4.1
 django-crispy-forms==1.14.0
 python-dotenv==1.0.0
+dj_database_url==2.1.0
+psycopg2==2.9.9
+psycopg2-binary==2.9.9
+django-debug-toolbar==4.2.0
