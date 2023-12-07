@@ -38,7 +38,7 @@ In a factory it is necessary to keep a record of the products made during a Shif
     ```
 7. Create an .env file and put the secret key in it.  
     ```shell 
-    password = "django-insecure-jgd9@7+bs^s%cq-!zypmq7a@r0y6v3ckwk0#(+b3s3(3m*8qmw"
+    DJANGO_SECRET_KEY = "django-insecure-jgd9@7+bs^s%cq-!zypmq7a@r0y6v3ckwk0#(+b3s3(3m*8qmw"
     ```
 8. Perform database creation migrations.  
     ```shell 
