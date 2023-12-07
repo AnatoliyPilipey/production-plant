@@ -5,7 +5,8 @@ In a factory it is necessary to keep a record of the products made during a Shif
 * see what we need to produce more,
 * analyze the cost of production.
  
-
+### Check it out  
+[Factory project deployed to Render](https://production-plant.onrender.com/)
 ---
            
 
